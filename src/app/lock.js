@@ -29,6 +29,7 @@ const WakeLockComponent = () => {
     };
 
     requestWakeLock();
+    
 
     return () => {
       lock?.release();
