@@ -6,17 +6,22 @@ import styles from '../app/root.module.css'
 const Typer = () =>  {
 
   const [displayedText, setDisplayedText] = useState("");
-  const [speed, setSpeed] = useState(300);
+  const [speed, setSpeed] = useState(90);
+  const [focus, setFocus] = useState(false);
 
   const inputRef = useRef(null);
+  
 
   useEffect(() => {
     
-    
+    if(focus){
     let i = 0;
     const interval = setInterval(() => {
       if (i < Text.length) {
         setDisplayedText((prev) => prev + Text[i]);
+        inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+
         i++;
       } else {
         clearInterval(interval);
@@ -24,20 +29,19 @@ const Typer = () =>  {
     }, speed);
 
     return () => clearInterval(interval);
-    
-  }, [String]);
+}
+  }, [String, focus]);
 
-  useEffect(() => {
-    
-    inputRef.current.focus();
-  }, [inputRef])
 
+  
   return(
     <textarea 
     ref={inputRef}
     readOnly={false}
     type="text" 
-    placeholder={"Title"}
+    onFocus={()=> setFocus(true)}
+    onBlur={()=> setFocus(false)}
+    placeholder={"Click Me"}
     value={displayedText}
     maxLength={20}
     className={styles.textarea} 
