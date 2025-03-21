@@ -1,0 +1,19 @@
+
+.root{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+}
+
+.textarea {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: fit-content;
+    field-sizing: content;
+  }
+  
